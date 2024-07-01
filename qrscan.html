@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Stack Multipurpose HTML Template</title>
+        <style>
+            .full-clickable {
+                cursor: pointer;
+                display: block;
+                position: relative;
+                text-decoration: none;
+                color: inherit;
+            }
+    
+            .full-clickable .masonry__item {
+                position: relative;
+                z-index: 1;
+            }
+    
+            .full-clickable .masonry__item::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 0;
+            }
+        </style>
+                <link rel="stylesheet" href="css/float.css">
+                <script
+                src="https://unpkg.com/html5-qrcode">
+            </script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Site Description Here">
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/stack-interface.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/socicon.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/lightbox.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/flickity.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/iconsmind.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/jquery.steps.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/theme.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body class=" ">
+        <a id="start"></a>
+
+        <!--end bar-->
+      
+      
+        <!--end of notification-->
+        <div class="nav-container ">
+         
+         
+            <!--end bar-->
+            <div class="bar bg--white bar--sm visible-sm visible-xs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3 col-md-2">
+                            <a href="index.html">
+                                <img class="logo logo-dark" alt="logo"  src="img/Logos/logo fitclan-10 copy.png" />
+                                <img class="logo logo-light" alt="logo"  src="img/Logos/logo fitclan-10 copy.png" />
+                            </a>
+                        </div>
+                        <div class="col-9 col-md-10 text-right">
+                            <a href="#" class="hamburger-toggle" data-toggle-class="#menu5;hidden-xs hidden-sm">
+                                <i class="icon icon--sm stack-interface stack-menu"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </div>
+        </div>
+            <!--end bar-->
+            <nav class="bar bar--sm bg--white hidden-xs hidden-sm" id="menu5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-1 hidden-xs hidden-sm">
+                            <div class="bar__module">
+                                <a href="index.html">
+                                    <img class="logo logo-dark" alt="logo" src="img/Logos/logo fitclan-10 copy.png" />
+                                    <img class="logo logo-light" alt="logo" src="img/Logos/logo fitclan-10 copy.png" />
+                            </div>
+                            <!--end module-->
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="bar__module">
+                                <ul class="menu-horizontal">
+                                    <li>
+                                        <a href="#">
+                                         Home
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                        <br>
+                        <!--end columns-->
+                        <div class="col-lg-6 text-right text-left-xs">
+                           
+                            <div class="bar__module">
+                                <a class="btn btn--secondry btn--sm type--uppercase" href="#">
+                                    <span class="btn__text">
+                                        Login or Signup
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="bar__module">
+                                <a class="btn btn--primary btn--sm type--uppercase" href="#">
+                                    <span class="btn__text">
+                                        Subscribe
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <!--end columns-->
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </nav>
+            <!--end bar-->
+        </div>
+    <div id="qr-reader" style="width: 100%; height: 50;"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const qrReader = document.getElementById('qr-reader');
+            const html5QrCode = new Html5Qrcode("qr-reader");
+
+            html5QrCode.start(
+                { facingMode: "environment" }, // Use back camera
+                {
+                    fps: 10,    // Optional, frame per seconds for qr code scanning
+                    qrbox: {width: 250, height: 250}// Optional, if you want bounded box UI
+                },
+                qrCodeMessage => {
+                    alert(`QR Code detected: ${qrCodeMessage}`);
+                    html5QrCode.stop().then(() => {
+                        // Optionally, you can redirect or perform some action after the QR code is detected
+                    }).catch(err => {
+                        console.error("Failed to stop scanning:", err);
+                    });
+                },
+                errorMessage => {
+                    // parse error, ignore it.
+                }
+            ).catch(err => {
+                console.error("Unable to start scanning:", err);
+            });
+        });
+    </script>
+</body>
+</html>
