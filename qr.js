@@ -20,9 +20,11 @@ domReady(function () {
 
     let htmlscanner = new Html5QrcodeScanner(
         
-        "my-qr-reader",
-        { facingMode: "environment" },
-        { fps: 10, qrbos: 250 }
+        
+
+        
     );
+    html5QrCode.start("my-qr-reader",{ facingMode: "environment" }, { fps: 10, qrbos: 250 }, qrCodeSuccessCallback);
+
     htmlscanner.render(onScanSuccess);
 });
