@@ -25,8 +25,8 @@ domReady(function () {
         "my-qr-reader",
         { facingMode: "environment" },
         { fps: 10, qrbos: 250,            
-          rememberLastUsedCamera: true,
-          supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
+        //   rememberLastUsedCamera: true,
+        //   supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
 
         },
         
