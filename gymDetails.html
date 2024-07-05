@@ -271,7 +271,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const params = new URLSearchParams(window.location.search);
                 const gymId = params.get('id');
-                const apiEndpoint = `https://ficlan.app/gymsweb/${gymId}`;
+                const apiEndpoint = `https://fitclan.app/gymsweb/${gymId}`;
 
                 fetch(apiEndpoint)
                     .then(response => response.json())
@@ -351,7 +351,7 @@
                     loginLogoutText.textContent = 'Logout';
                     loginLogoutBtn.addEventListener('click', function(event) {
                         event.preventDefault();
-                        fetch('https://ficlan.app/auth/logout', {
+                        fetch('https://fitclan.app/auth/logout', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',

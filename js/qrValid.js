@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   
   function fetchUserProfile(userId, token) {
-    return fetch(`https://ficlan.app/user/profile/${userId}`, {
+    return fetch(`https://fitclan.app/user/profile/${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function checkInWeb(gymId) {
     const token = localStorage.getItem('token');
 
-    fetch('https://ficlan.app/user/checkInWeb', {
+    fetch('https://fitclan.app/user/checkInWeb', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
