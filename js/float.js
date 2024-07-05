@@ -41,7 +41,7 @@ qrButton.addEventListener('click', function() {
     window.location.href = 'qrscan.html';})
 
 function fetchUserProfile(userId, token) {
-    return fetch(`http://localhost:3000/user/profile/${userId}`, {
+    return fetch(`https://ficlan.app/user/profile/${userId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

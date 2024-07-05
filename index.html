@@ -229,7 +229,7 @@
         <script src="js/scripts.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                const apiEndpoint = 'http://localhost:3000/gymsweb';
+                const apiEndpoint = 'https://ficlan.app/gymsweb';
                 fetch(apiEndpoint)
                     .then(response => response.json())
                     .then(data => {
@@ -283,7 +283,7 @@
                     const userId = decodedToken.id;
                    
 
-                    fetch(`http://localhost:3000/user/profile/${userId}`, {
+                    fetch(`https://ficlan.app/user/profile/${userId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -302,7 +302,7 @@
                     loginLogoutText.textContent = 'Logout';
                     loginLogoutBtn.addEventListener('click', function(event) {
                         event.preventDefault();
-                        fetch('http://localhost:3000/auth/logout', {
+                        fetch('https://ficlan.app/auth/logout', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',

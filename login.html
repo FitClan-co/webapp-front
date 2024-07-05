@@ -180,7 +180,7 @@
 
                     signupLoginBtn.disabled = true;
 
-                    fetch('http://localhost:3000/auth/signupOrLogin', {
+                    fetch('https://ficlan.app/auth/signupOrLogin', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -207,7 +207,7 @@
                     const phoneNumber = localStorage.getItem('phoneNumber');
                     const otp = otpInput.value;
 
-                    fetch('http://localhost:3000/auth/verifyOTP', {
+                    fetch('https://ficlan.app/auth/verifyOTP', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

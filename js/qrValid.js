@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   
   function fetchUserProfile(userId, token) {
-    return fetch(`http://localhost:3000/user/profile/${userId}`, {
+    return fetch(`https://ficlan.app/user/profile/${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function checkInWeb(gymId) {
     const token = localStorage.getItem('token');
 
-    fetch('http://localhost:3000/user/checkInWeb', {
+    fetch('https://ficlan.app/user/checkInWeb', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
