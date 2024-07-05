@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Stack Multipurpose HTML Template</title>
+    <title>Complete Profile</title>
     <link rel="stylesheet" href="css/float.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Site Description Here">
@@ -68,23 +68,20 @@
             <div class="container pos-vertical-center">
                 <div class="row">
                     <div class="col-lg-5 col-md-7">
-                        <h3>Signup or Login</h3>
-                        <form id="authForm">
+                        <h3>Complete your profile:</h3>
+                        <form id="profileregisterationform">
                             <div class="row">
                                 <div class="col-12">
-                                    <input type="text" id="phoneNumber" placeholder="01203548535" />
+                                    <input type="text" id="first_name" placeholder="First Name" required />
+                                </div>
+                               <div class="col-12">
+                                    <input type="text" id="last_name" placeholder="Last Name" required />
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn--primary type--uppercase" id="signupLoginBtn">Signup or Login</button>
+                                    <input type="email" id="work_email" placeholder="Work Email" required />
                                 </div>
                                 <div class="col-12">
-                                    <span class="type--fine-print">You will receive OTP shortly, through WhatsApp or SMS
-                                        <a href="#">Terms of Service</a>
-                                    </span>
-                                </div>
-                                <div class="col-12" id="otpSection" style="display: none;">
-                                    <input type="text" id="otp" placeholder="Enter OTP" />
-                                    <button type="button" class="btn btn--primary type--uppercase" id="validateOtpBtn">Validate OTP</button>
+                                    <button type="submit" class="btn btn--primary type--uppercase" id="completebtn">Complete Profile</button>
                                 </div>
                             </div>
                         </form>
@@ -160,71 +157,41 @@
         <script src="js/scripts.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                const authForm = document.getElementById('authForm');
-                const phoneNumberInput = document.getElementById('phoneNumber');
-                const signupLoginBtn = document.getElementById('signupLoginBtn');
-                const otpSection = document.getElementById('otpSection');
-                const otpInput = document.getElementById('otp');
-                const validateOtpBtn = document.getElementById('validateOtpBtn');
+                const form = document.getElementById('profileregisterationform');
+                const token = localStorage.getItem('token');
 
-                authForm.addEventListener('submit', function(event) {
+                form.addEventListener('submit', function(event) {
                     event.preventDefault();
-                    const phoneNumber = phoneNumberInput.value;
 
-                    if (!/^01[0-2,5]{1}[0-9]{8}$/.test(phoneNumber)) {
-                        alert('Please enter a valid Egyptian phone number.');
-                        return;
-                    }
+                    const firstName = document.getElementById('first_name').value;
+                    const lastName = document.getElementById('last_name').value;
+                    const workEmail = document.getElementById('work_email').value;
 
-                    const formattedPhoneNumber = '2' + phoneNumber;
-
-                    signupLoginBtn.disabled = true;
-
-                    fetch('http://localhost:3000/auth/signupOrLogin', {
+                    fetch('http://localhost:3000/user/profilregisterationweb', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
                         },
-                        body: JSON.stringify({ phoneNumber: formattedPhoneNumber }),
+                        body: JSON.stringify({
+                            first_name: firstName,
+                            last_name: lastName,
+                            work_email: workEmail
+                        })
                     })
                     .then(response => response.json())
                     .then(data => {
-                        signupLoginBtn.disabled = false;
-                        if (data.message === 'OTP sent') {
-                            localStorage.setItem('phoneNumber', formattedPhoneNumber);
-                            window.location.href = 'otp.html';
-                        } else {
+                        if (data.message === 'Profile updated successfully') {
+                            alert('Profile completed successfully');
+                            window.location.href = 'index.html';
+                        } else if (data.message === 'User is already registered') {
                             alert(data.message);
-                        }
-                    })
-                    .catch(error => {
-                        signupLoginBtn.disabled = false;
-                        console.error('Error:', error);
-                    });
-                });
-
-                validateOtpBtn.addEventListener('click', function() {
-                    const phoneNumber = localStorage.getItem('phoneNumber');
-                    const otp = otpInput.value;
-
-                    fetch('http://localhost:3000/auth/verifyOTP', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ phoneNumber, otp }),
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.token) {
-                            alert('OTP verified successfully!');
-                            localStorage.setItem('token', data.token);
-                        } else {
-                            alert(data.message);
+                            window.location.href = 'index.html';
                         }
                     })
                     .catch(error => {
                         console.error('Error:', error);
+                        alert('An error occurred: ' + error.message);
                     });
                 });
             });

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Stack Multipurpose HTML Template</title>
+    <title>OTP Verification</title>
     <link rel="stylesheet" href="css/float.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Site Description Here">
@@ -68,23 +68,14 @@
             <div class="container pos-vertical-center">
                 <div class="row">
                     <div class="col-lg-5 col-md-7">
-                        <h3>Signup or Login</h3>
-                        <form id="authForm">
+                        <h3>Verify OTP</h3>
+                        <form id="otpForm">
                             <div class="row">
                                 <div class="col-12">
-                                    <input type="text" id="phoneNumber" placeholder="01203548535" />
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn--primary type--uppercase" id="signupLoginBtn">Signup or Login</button>
-                                </div>
-                                <div class="col-12">
-                                    <span class="type--fine-print">You will receive OTP shortly, through WhatsApp or SMS
-                                        <a href="#">Terms of Service</a>
-                                    </span>
-                                </div>
-                                <div class="col-12" id="otpSection" style="display: none;">
                                     <input type="text" id="otp" placeholder="Enter OTP" />
-                                    <button type="button" class="btn btn--primary type--uppercase" id="validateOtpBtn">Validate OTP</button>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn--primary type--uppercase" id="validateOtpBtn">Validate OTP</button>
                                 </div>
                             </div>
                         </form>
@@ -160,52 +151,21 @@
         <script src="js/scripts.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                const authForm = document.getElementById('authForm');
-                const phoneNumberInput = document.getElementById('phoneNumber');
-                const signupLoginBtn = document.getElementById('signupLoginBtn');
-                const otpSection = document.getElementById('otpSection');
+                const otpForm = document.getElementById('otpForm');
                 const otpInput = document.getElementById('otp');
                 const validateOtpBtn = document.getElementById('validateOtpBtn');
+                let phoneNumber = localStorage.getItem('phoneNumber');
+                    console.log(phoneNumber)
+                if (!phoneNumber) {
+                    alert('Unauthorized access. Please login first.');
+                    window.location.href = 'index.html';
+                }
 
-                authForm.addEventListener('submit', function(event) {
+                otpForm.addEventListener('submit', function(event) {
                     event.preventDefault();
-                    const phoneNumber = phoneNumberInput.value;
-
-                    if (!/^01[0-2,5]{1}[0-9]{8}$/.test(phoneNumber)) {
-                        alert('Please enter a valid Egyptian phone number.');
-                        return;
-                    }
-
-                    const formattedPhoneNumber = '2' + phoneNumber;
-
-                    signupLoginBtn.disabled = true;
-
-                    fetch('http://localhost:3000/auth/signupOrLogin', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ phoneNumber: formattedPhoneNumber }),
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        signupLoginBtn.disabled = false;
-                        if (data.message === 'OTP sent') {
-                            localStorage.setItem('phoneNumber', formattedPhoneNumber);
-                            window.location.href = 'otp.html';
-                        } else {
-                            alert(data.message);
-                        }
-                    })
-                    .catch(error => {
-                        signupLoginBtn.disabled = false;
-                        console.error('Error:', error);
-                    });
-                });
-
-                validateOtpBtn.addEventListener('click', function() {
-                    const phoneNumber = localStorage.getItem('phoneNumber');
                     const otp = otpInput.value;
+
+                    validateOtpBtn.disabled = true;
 
                     fetch('http://localhost:3000/auth/verifyOTP', {
                         method: 'POST',
@@ -216,14 +176,24 @@
                     })
                     .then(response => response.json())
                     .then(data => {
+                        validateOtpBtn.disabled = false;
                         if (data.token) {
-                            alert('OTP verified successfully!');
                             localStorage.setItem('token', data.token);
+                            if (data.isProfileCompletedWeb) {
+                                window.location.href = 'index.html';
+                            } else {
+                                window.location.href = 'isProfileCompleted.html';
+                            }
                         } else {
                             alert(data.message);
+                            window.location.href = 'login.html';
+
+                            console.log(phoneNumber)
+
                         }
                     })
                     .catch(error => {
+                        validateOtpBtn.disabled = false;
                         console.error('Error:', error);
                     });
                 });

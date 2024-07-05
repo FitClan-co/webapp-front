@@ -129,33 +129,34 @@
             <!--end bar-->
         </div>
     <div id="qr-reader" style="width: 100%; height: 50;"></div>
-
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="js/qrValid.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const qrReader = document.getElementById('qr-reader');
-            const html5QrCode = new Html5Qrcode("qr-reader");
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const qrReader = document.getElementById('qr-reader');
+        //     const html5QrCode = new Html5Qrcode("qr-reader");
 
-            html5QrCode.start(
-                { facingMode: "environment" }, // Use back camera
-                {
-                    fps: 10,    // Optional, frame per seconds for qr code scanning
-                    qrbox: {width: 250, height: 250}// Optional, if you want bounded box UI
-                },
-                qrCodeMessage => {
-                    alert(`QR Code detected: ${qrCodeMessage}`);
-                    html5QrCode.stop().then(() => {
-                        // Optionally, you can redirect or perform some action after the QR code is detected
-                    }).catch(err => {
-                        console.error("Failed to stop scanning:", err);
-                    });
-                },
-                errorMessage => {
-                    // parse error, ignore it.
-                }
-            ).catch(err => {
-                console.error("Unable to start scanning:", err);
-            });
-        });
+        //     html5QrCode.start(
+        //         { facingMode: "environment" }, // Use back camera
+        //         {
+        //             fps: 10,    // Optional, frame per seconds for qr code scanning
+        //             qrbox: {width: 250, height: 250}// Optional, if you want bounded box UI
+        //         },
+        //         qrCodeMessage => {
+        //             alert(`QR Code detected: ${qrCodeMessage}`);
+        //             html5QrCode.stop().then(() => {
+        //                 // Optionally, you can redirect or perform some action after the QR code is detected
+        //             }).catch(err => {
+        //                 console.error("Failed to stop scanning:", err);
+        //             });
+        //         },
+        //         errorMessage => {
+        //             // parse error, ignore it.
+        //         }
+        //     ).catch(err => {
+        //         console.error("Unable to start scanning:", err);
+        //     });
+        // });
     </script>
 </body>
 </html>
