@@ -64,6 +64,18 @@
         </nav>
     </div>
     <div class="main-container">
+
+        <div id="notifications"class="notifications pos-right pos-top" data-animation="from-top" data-autoshow="200">
+            <div class="boxed boxed--border border--round box-shadow">
+                <div class="text-block">
+                    <h5>Authentication Failed:</h5>
+                    <p>
+                        <p id="notificationMessage"> 
+                        </p>
+                </div>
+            </div>
+        </div>
+        
         <section>
             <div class="container pos-vertical-center">
                 <div class="row">
@@ -151,12 +163,14 @@
         <script src="js/scripts.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
+
                 const otpForm = document.getElementById('otpForm');
                 const otpInput = document.getElementById('otp');
                 const validateOtpBtn = document.getElementById('validateOtpBtn');
                 let phoneNumber = localStorage.getItem('phoneNumber');
                     console.log(phoneNumber)
                 if (!phoneNumber) {
+
                     alert('Unauthorized access. Please login first.');
                     window.location.href = 'index.html';
                 }
@@ -185,8 +199,18 @@
                                 window.location.href = 'isProfileCompleted.html';
                             }
                         } else {
-                            alert(data.message);
-                            window.location.href = 'login.html';
+                            var notification = document.getElementById('notifications');
+                var notificationMessage = document.getElementById('notificationMessage');
+                notificationMessage.textContent = data.message; // Set the message
+                notification.style.display = 'block'; // Show the notification
+                
+                // Add animation class if needed
+                notification.classList.add('animate-notifications');
+                setTimeout(function() {
+                    notification.style.display = 'none';
+                    notification.classList.remove('animate-notification'); // Remove animation class if needed
+                }, 2000);
+                         
 
                             console.log(phoneNumber)
 

@@ -64,7 +64,7 @@
                             </a>
                         </div>
                         <div class="bar__module">
-                            <a class="btn btn--primary btn--sm type--uppercase" href="#">
+                            <a class="btn btn--primary btn--sm type--uppercase" href="sub.html">
                                 <span class="btn__text">Subscribe</span>
                             </a>
                         </div>
@@ -74,6 +74,17 @@
         </nav>
     </div>
     <div class="main-container">
+        <div id="notifications"class="notifications pos-right pos-top" data-animation="from-top" data-autoshow="200">
+            <div class="boxed boxed--border border--round box-shadow">
+                <div class="text-block">
+                    <h5  class="color--success" id="notificationMessage"></h5>
+                    <p>
+                        <p> 
+                        </p>
+                </div>
+            </div>
+        </div>
+        
         <section class="cover height-100 imagebg text-center" data-overlay="2" id="home">
             <div class="background-image-holder">
                 <img alt="background" src="img/fitness-1.jpg" />
@@ -90,6 +101,8 @@
                 </div>
             </div>
         </section>
+
+       
         <section>
             <div class="container">
                 <div class="row">
@@ -103,6 +116,7 @@
         </section>
         <section>
             <div class="container">
+               <h3 id="visits"> </h3>
                 <div class="dropdown">
                     <span class="dropdown__trigger">Filters</span>
                     <i class="stack-down-open"></i>
@@ -149,6 +163,8 @@
                 </div>
             </div>
         </section>
+      
+      
         <div class="container">
             <section class="unpad">
                 <div class="masonry">
@@ -236,8 +252,9 @@
                         const gymsContainer = document.getElementById('gyms-container');
                         data.forEach(gym => {
                             const gymCard = document.createElement('div');
-                            gymCard.classList.add('col-md-4', 'masonry__item', 'full-clickable');
+                            gymCard.classList.add('col-md-4', 'masonry__item', 'full-clickable' ); 
                             gymCard.setAttribute('data-href', `gymDetails.html?id=${gym.id}`);
+
                             gymCard.innerHTML = `
                                 <div class="card card-1 boxed boxed--sm boxed--border">
                                     <div class="card__top">
@@ -281,6 +298,7 @@
                 if (token) {
                     const decodedToken = jwt_decode(token);
                     const userId = decodedToken.id;
+                    console.log(userId)
                    
 
                     fetch(`https://fitclan.app/user/profile/${userId}`, {
@@ -292,6 +310,17 @@
             })
             .then(response => response.json())
             .then(data => {
+                const remainingVisits = data.remainingVisits;
+                // const totalVisits = 5;
+                // const progressValue = (remainingVisits / totalVisits) * 100;
+
+                // Update progress bar and label
+                // document.getElementById('progressBar').setAttribute('data-value', progressValue);
+                // document.getElementById('visits').style.width = `${progressValue}%`;
+                // progressLabel.textContent = `Visits left: ${remainingVisits}/${totalVisits}`;
+
+                document.getElementById('visits').textContent = `Gym Visits Left: ${remainingVisits || 0}/30`;
+ console.log(data.isProfileCompletedWeb)
                 if (!data.isProfileCompletedWeb) {
                     window.location.href = 'isProfileCompleted.html';
                 }
@@ -312,9 +341,25 @@
                         .then(response => response.json())
                         .then(data => {
                             if (data.message === 'Logged out successfully') {
-                                localStorage.removeItem('token');
-                                window.location.href = 'login.html';
+                                // alert(data.message);
+                                var notification = document.getElementById('notifications'); // Correct the ID
+    var notificationMessage = document.getElementById('notificationMessage');
+    notificationMessage.textContent = data.message; // Set the message
+    notification.style.display = 'block'; // Show the notification
+
+    // Add animation class if needed
+    notification.classList.add('animate-notification');
+
+    setTimeout(function() {
+        notification.style.display = 'none';
+        notification.classList.remove('animate-notification'); // Remove animation class if needed
+        localStorage.removeItem('token');
+        window.location.reload(); // Reload the page
+    }, 1000);
+                              
                             } else {
+                              
+                         
                                 alert('Logout failed: ' + data.message);
                             }
                         })

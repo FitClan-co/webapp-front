@@ -78,7 +78,7 @@
                         <div class="bar__module">
                             <ul class="menu-horizontal">
                                 <li>
-                                    <a href="#">
+                                    <a href="index.html">
                                         Home
                                     </a>
                                 </li>
@@ -110,7 +110,7 @@
             <article>
                 <div class="imagebg text-center height-60" data-overlay="5">
                     <div class="background-image-holder" id="cover-photo">
-                        <img alt="background" src="img/image 1.png" />
+                        <img alt="background" src="" />
                     </div>
                     <div class="container pos-vertical-center">
                         <div class="row">
@@ -281,7 +281,8 @@
                         document.getElementById('area').textContent = `Area: ${gym.area}`;
                         document.getElementById('description').textContent = gym.description;
                         document.getElementById('gym-logo').src = gym.logo;
-                        document.getElementById('cover-photo').children[0].src = gym.coverPhoto;
+                        // document.getElementById('cover-photo').children[0].src = gym.coverPhoto;
+                        document.getElementById('cover-photo').style.backgroundImage = `url(${gym.coverPhoto})`;
 
                         // Update amenities list
                         const amenitiesList = document.getElementById('amenities-list');

@@ -90,13 +90,62 @@ document.addEventListener('DOMContentLoaded', function () {
             const createdAt = new Date(data.message.createdAt);
             const date = createdAt.toLocaleDateString();
             const time = createdAt.toLocaleTimeString();
-            alert(`Check-in successful\nDate: ${date}\nTime: ${time}\nUser ID: ${data.message.userId}`);
+            console.log(date)
+            console.log(time)
+            console.log(data.message.userId)
+
+            // Show custom notification
+            const notification = document.getElementById('notifications');
+            const notificationMessage = document.getElementById('notificationMessage');
+            notificationMessage.textContent = `Check-in successful\nDate: ${date}\nTime: ${time}\nUser ID: ${data.message.userId}`;
+            notificationMessage.className = 'color--success';
+            notification.style.display = 'block';
+            
+            // Add animation class if needed
+            notification.classList.add('animate-notification');
+            
+            // Hide the notification after 2 seconds
+            setTimeout(function() {
+                notification.style.display = 'none';
+                notification.classList.remove('animate-notification');
+            }, 10000);
+            
         } else {
-            alert('Check-in failed: ' + (data.message.reason || 'Unknown error'));
+            // Show custom notification for failure
+            const notification = document.getElementById('notifications');
+            const notificationMessage = document.getElementById('notificationMessage');
+            notificationMessage.textContent = 'Check-in failed: ' + (data.message.reason || 'Unknown error');
+            notificationMessage.className = 'color--error';
+            notification.style.display = 'block';
+            
+            // Add animation class if needed
+            notification.classList.add('animate-notification');
+            
+            // Hide the notification after 2 seconds
+            setTimeout(function() {
+                notification.style.display = 'none';
+                notification.classList.remove('animate-notification');
+            }, 10000);
         }
     })
     .catch(error => {
         console.error('Error during check-in:', error);
-        alert('Check-in failed: ' + error.message);
+        
+        // Show custom notification for error
+        const notification = document.getElementById('notifications');
+        const notificationMessage = document.getElementById('notificationMessage');
+        notificationMessage.textContent = 'Check-in failed: ' + error.message;
+        notificationMessage.className = 'color--error';
+        notification.style.display = 'block';
+        
+        // Add animation class if needed
+        notification.classList.add('animate-notification');
+        
+        // Hide the notification after 2 seconds
+        setTimeout(function() {
+            notification.style.display = 'none';
+            notification.classList.remove('animate-notification');
+        }, 10000);
     });
 }
+

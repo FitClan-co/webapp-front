@@ -20,7 +20,7 @@
 </head>
 <body class=" ">
     <a id="start"></a>
-    <div class="nav-container ">
+    <div class="nav-container">
         <div class="bar bg--white bar--sm visible-sm visible-xs">
             <div class="container">
                 <div class="row">
@@ -50,14 +50,24 @@
                     </div>
                     <div class="col-lg-5">
                         <div class="bar__module">
-                            <ul class="menu-horizontal">
-                                <li><a href="#">Home</a></li>
+                            <ul class="menu-horizontal align-items-center text-center">
+                                <li>
+                                    <a href="#">Home</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-6 text-right text-left-xs">
-                        <div class="bar__module"></div>
-                        <div class="bar__module"></div>
+                        <div class="bar__module">
+                            <a class="btn btn--secondry btn--sm type--uppercase" id="loginLogoutBtn" href="login.html">
+                                <span class="btn__text" id="loginLogoutText">Login or Signup</span>
+                            </a>
+                        </div>
+                        <div class="bar__module">
+                            <a class="btn btn--primary btn--sm type--uppercase" href="#">
+                                <span class="btn__text">Subscribe</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -74,34 +84,90 @@
                 </div>
             </div>
         </div>
+        
+
+       
         <section>
-            <div class="container pos-vertical-center">
+            <div class="container">
                 <div class="row">
-                    <div class="col-lg-5 col-md-7">
-                        <h3>Signup or Login</h3>
-                        <form id="authForm">
-                            <div class="row">
-                                <div class="col-12">
-                                    <input type="text" id="phoneNumber" placeholder="01203548535" />
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn--primary type--uppercase" id="signupLoginBtn">Signup or Login</button>
-                                </div>
-                                <div class="col-12">
-                                    <span class="type--fine-print">You will receive OTP shortly, through WhatsApp or SMS
-                                        <!-- <a href="#">Terms of Service</a> -->
-                                    </span>
-                                </div>
-                                <div class="col-12" id="otpSection" style="display: none;">
-                                    <input type="text" id="otp" placeholder="Enter OTP" />
-                                    <button type="button" class="btn btn--primary type--uppercase" id="validateOtpBtn">Validate OTP</button>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="col-md-12">
+                        <h1>Subscribe & access
+                            <span class="inline-block typed-text typed-text--cursor color--primary" data-typed-strings="Gold's Gym, BeFit, H2O, Ignite">Gym</span>
+                            <br class="hidden-xs">More Gyms across Cairo</h1>
                     </div>
                 </div>
             </div>
         </section>
+
+      
+       
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="pricing pricing-1 boxed boxed--border boxed--lg text-center">
+                                <h4>Silver</h4>
+                                <span class="h1">
+                                    <span class=""></span>1300 EGP</span>
+                                <img alt="Image" src="img/silver.png" />
+                                <p>
+                                    30 Gym Visits for our Gyms in Silver Package 
+                                </p>
+                                <a class="btn btn--primary" href="#">
+                                    <span class="btn__text">
+                                        Subscibe Now!
+                                    </span>
+                                </a>
+                            </div>
+                            <!--end pricing-->
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="pricing pricing-1 boxed boxed--border boxed--lg text-center">
+                                <h4>Gold</h4>
+                                <span class="h1">
+                                    <span class=""></span>1700 EGP</span>
+                                <img alt="Image" src="img/gold.png" />
+                                <p>
+                                    30 Gym Visits for our Gyms in Gold Package <br> + Gyms in Silver Package
+                                </p>
+                                <!-- <span class="label">Value</span> -->
+                                <a class="btn btn--primary" href="#">
+                                    <span class="btn__text">
+                                        Subscibe Now!
+                                    </span>
+                                </a>
+                            </div>
+                            <!--end pricing-->
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="pricing pricing-1 boxed boxed--border boxed--lg text-center">
+                                <h4>Platinum</h4>
+                                <span class="h1">
+                                    <span class=""></span>2000 EGP</span>
+                                <img alt="Image" src="img/platinum.png" />
+                                <p>
+                                   30 Gym Visits for our top end Platinum Gyms <br> + Gyms in Gold and Silver
+                                </p>
+                                <a class="btn btn--primary" href="#">
+                                    <span class="btn__text">
+                                        Subscibe Now!
+                                    </span>
+                                </a>
+                            </div>
+                            <!--end pricing-->
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+     
+        
+
+
+        <div class="floating-button" id="qrButton">
+            <img src="img/qr-scan-icon-512x512-9bsp061y.png" alt="QR Code">
+        </div>
         <footer class="footer-3 text-center-xs space--xs">
             <div class="container">
                 <div class="row">
@@ -148,10 +214,12 @@
                 </div>
             </footer>
         </div>
-        <a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+        <!-- <a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
             <i class="stack-interface stack-up-open-big"></i>
-        </a>
-        <script src="float.js"></script>
+        </a> -->
+        <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+
+        <script src="js/float.js"></script>
         <script src="js/jquery-3.1.1.min.js"></script>
         <script src="js/flickity.min.js"></script>
         <script src="js/easypiechart.min.js"></script>
@@ -170,31 +238,52 @@
         <script src="js/scripts.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                const authForm = document.getElementById('authForm');
-                const phoneNumberInput = document.getElementById('phoneNumber');
-                const signupLoginBtn = document.getElementById('signupLoginBtn');
-                const otpSection = document.getElementById('otpSection');
-                const otpInput = document.getElementById('otp');
-                const validateOtpBtn = document.getElementById('validateOtpBtn');
-
+               
                 
+                const loginLogoutBtn = document.getElementById('loginLogoutBtn');
+                const loginLogoutText = document.getElementById('loginLogoutText');
+                const token = localStorage.getItem('token');
+                if (token) {
+                    const decodedToken = jwt_decode(token);
+                    const userId = decodedToken.id;
+                    console.log(userId)
+                   
 
-                authForm.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    const phoneNumber = phoneNumberInput.value;
+                    fetch(`https://fitclan.app/user/profile/${userId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+               
+ console.log(data.isProfileCompletedWeb)
+                if (!data.isProfileCompletedWeb) {
+                    window.location.href = 'isProfileCompleted.html';
+                }
+            })
+            .catch(error => console.error('Error fetching user profile:', error));
 
-                    if (!/^01[0-2,5]{1}[0-9]{8}$/.test(phoneNumber)) {
-                        alert('Please enter a valid Egyptian phone number.');
-                        return;
-                    }
 
-                    const formattedPhoneNumber = '2' + phoneNumber;
-
-                    signupLoginBtn.disabled = true;
-
-                    var notification = document.getElementById('notifications'); // Correct the ID
+                    loginLogoutText.textContent = 'Logout';
+                    loginLogoutBtn.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        fetch('https://fitclan.app/auth/logout', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.message === 'Logged out successfully') {
+                                // alert(data.message);
+                                var notification = document.getElementById('notifications'); // Correct the ID
     var notificationMessage = document.getElementById('notificationMessage');
-    notificationMessage.textContent = "Sending OTP"; // Set the message
+    notificationMessage.textContent = data.message; // Set the message
     notification.style.display = 'block'; // Show the notification
 
     // Add animation class if needed
@@ -203,56 +292,25 @@
     setTimeout(function() {
         notification.style.display = 'none';
         notification.classList.remove('animate-notification'); // Remove animation class if needed
-     
+        localStorage.removeItem('token');
+        window.location.reload(); // Reload the page
     }, 1000);
-
-                    fetch('https://fitclan.app/auth/signupOrLogin', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ phoneNumber: formattedPhoneNumber }),
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        signupLoginBtn.disabled = false;
-                        if (data.message === 'OTP sent') {
-                            localStorage.setItem('phoneNumber', formattedPhoneNumber);
-                            window.location.href = 'otp.html';
-                        } else {
-                            alert(data.message);
-                        }
-                    })
-                    .catch(error => {
-                        signupLoginBtn.disabled = false;
-                        console.error('Error:', error);
+                              
+                            } else {
+                              
+                         
+                                alert('Logout failed: ' + data.message);
+                            }
+                        })
+                        .catch(error => console.error('Error during logout:', error));
                     });
-                });
-
-                validateOtpBtn.addEventListener('click', function() {
-                    const phoneNumber = localStorage.getItem('phoneNumber');
-                    const otp = otpInput.value;
-
-                    fetch('https://fitclan.app/auth/verifyOTP', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ phoneNumber, otp }),
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.token) {
-                            alert('OTP verified successfully!');
-                            localStorage.setItem('token', data.token);
-                        } else {
-                            alert(data.message);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
+                } else {
+                    loginLogoutBtn.addEventListener('click', function() {
+                        window.location.href = 'login.html';
                     });
-                });
+                    // const qrButton = document.getElementById('qrButton');
+                    // qrButton.style.display = 'none';
+                }
             });
         </script>
     </body>

@@ -166,6 +166,14 @@
                     const firstName = document.getElementById('first_name').value;
                     const lastName = document.getElementById('last_name').value;
                     const workEmail = document.getElementById('work_email').value;
+                    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const publicDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com'];
+        const emailDomain = workEmail.split('@')[1];
+
+        if (!emailRegex.test(workEmail) || publicDomains.includes(emailDomain)) {
+            alert('Please enter a valid work email.');
+            return;
+        }
 
                     fetch('https://fitclan.app/user/profilregisterationweb', {
                         method: 'POST',

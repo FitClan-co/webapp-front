@@ -37,3 +37,22 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
+
+
+#notifications {
+    display: none;
+}
+
+/* Example animation */
+.animate-notifications {
+    animation: slideInFromTop 0.5s forwards;
+}
+
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
